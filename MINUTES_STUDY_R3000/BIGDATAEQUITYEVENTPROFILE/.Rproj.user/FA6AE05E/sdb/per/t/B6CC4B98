@@ -1,0 +1,17 @@
+{
+    "contents" : "# Data collection and flat file saving for all graphics\nlibrary(\"RPToolsDB\")\nlibrary(\"abind\")\nlibrary(\"RPPlotUtils\")\nlibrary(\"RPostgreSQL\")\nlibrary(\"sqldf\")\nlibrary(\"utils\")\n\nuser = 'sduprey'\n# JIRA Code (e.g. NAR-#)\nJIRACode = 'NAR-326'\nrepoPath = RP_GetSharedPath(user)\n# Input Data Path\ninputDataPath  = paste(repoPath,'InputData/', user,'/',JIRACode,'/',sep=\"\")\n\n# Output Data Path\noutputDataPath = paste(repoPath,'OutputData/', user,'/',JIRACode,'/',sep=\"\")\n\nSys.setenv(TZ = \"UTC\")\n\n# source(\"./RCode/RP_Utilities.R\")\n# source(\"./RCode/RP_BigData_EventStudy_Utilities.R\")\n\n# # save(day, CompanyRPDataDaily, rday_minute_data_RPData, indice_minutes_daily_RPData, minute_range,file = paste0(outputDataPath,\"damnedBug.RData\"))\nload(file = paste0(outputDataPath,\"damnedBug.RData\"))\nminute_event_df <- RPDailyMinutesEventMatrixBetaMarketConstruction(Day =day, EventsDF = CompanyRPDataDaily, MinutesDF = rday_minute_data_RPData, MinutesIndiceDF = indice_minutes_daily_RPData,  minute_range = minute_range)\n\n\nsave(Day,  EventsDT, MinutesDT, MinutesIndiceDT,file = paste0(outputDataPath,\"damnedBugBis.RData\"))\nload(file = paste0(outputDataPath,\"damnedBugBis.RData\"))\nRP_CalibrateDailyMinuteBetaMarket(Day,  EventsDT, MinutesDT, MinutesIndiceDT)\n    ",
+    "created" : 1475240992479.000,
+    "dirty" : false,
+    "encoding" : "UTF-8",
+    "folds" : "",
+    "hash" : "3219555188",
+    "id" : "B6CC4B98",
+    "lastKnownWriteTime" : 1475248392,
+    "path" : "E:/research/Projects/sduprey/NAR-326/RCode/draft_draft.R",
+    "project_path" : null,
+    "properties" : {
+    },
+    "relative_order" : 5,
+    "source_on_save" : false,
+    "type" : "r_source"
+}
